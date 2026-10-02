@@ -1,0 +1,13 @@
+{
+  "name": "zyne",
+  "private": true,
+  "scripts": {
+    "storybook": "pnpm -F @zyne/ui storybook",
+    "build-storybook": "pnpm -F @zyne/ui build-storybook",
+    "test": "pnpm -F @zyne/ui test",
+    "typecheck": "pnpm -F @zyne/ui typecheck"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

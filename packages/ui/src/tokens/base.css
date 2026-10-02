@@ -1,0 +1,13 @@
+/* Wrapped in Tailwind's `base` layer so these resets stay lower-priority than
+   any utility class (e.g. a Button's `text-on-accent` rendered as an <a> via
+   `asChild`) — unlayered CSS always beats layered CSS regardless of specificity. */
+@layer base {
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--bg-canvas);color:var(--text-body);font-family:var(--font-sans);font-size:var(--text-body-md);line-height:var(--lh-body-md);-webkit-font-smoothing:antialiased}
+  a{color:var(--text-link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+  a:hover{color:var(--text-link-hover)}
+  :focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-sm)}
+  input:focus-visible,select:focus-visible,textarea:focus-visible{box-shadow:none;border-radius:0}
+  ::selection{background:var(--plum-100);color:var(--mist-900)}
+  @media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important;animation-duration:0ms!important}}
+}

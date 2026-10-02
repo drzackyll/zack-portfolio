@@ -1,0 +1,79 @@
+/* Tailwind v4 theme mapping for @zyne/ui — copied from handoff/tailwind-theme.css. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  --color-canvas: var(--bg-canvas);
+  --color-surface-card: var(--surface-card);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-pressed: var(--surface-pressed);
+  --color-surface-selected: var(--surface-selected);
+  --color-surface-inverse: var(--surface-inverse);
+
+  --color-strong: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-inverse: var(--text-inverse);
+  --color-on-accent: var(--text-on-accent);
+  --color-link: var(--text-link);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-border-input: var(--border-input);
+  --color-border-focus: var(--border-focus);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-border: var(--accent-soft-border);
+  --color-accent-text: var(--accent-text);
+
+  --color-neutral-bg: var(--neutral-bg);
+  --color-neutral-fg: var(--neutral-fg);
+  --color-neutral-border: var(--neutral-border);
+  --color-success-fg: var(--success-fg);   --color-success-bg: var(--success-bg);   --color-success-border: var(--success-border);   --color-success-solid: var(--success-solid);
+  --color-warning-fg: var(--warning-fg);   --color-warning-bg: var(--warning-bg);   --color-warning-border: var(--warning-border);   --color-warning-solid: var(--warning-solid);
+  --color-danger-fg: var(--danger-fg);     --color-danger-bg: var(--danger-bg);     --color-danger-border: var(--danger-border);     --color-danger-solid: var(--danger-solid);
+  --color-info-fg: var(--info-fg);         --color-info-bg: var(--info-bg);         --color-info-border: var(--info-border);         --color-info-solid: var(--info-solid);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --ease-standard: var(--ease-standard);
+  --ease-exit: var(--ease-exit);
+
+  /* Type scale: text-display-md → 34px/40px, etc. */
+  --text-display-xl: 56px;  --text-display-xl--line-height: 60px;
+  --text-display-lg: 44px;  --text-display-lg--line-height: 50px;
+  --text-display-md: 34px;  --text-display-md--line-height: 40px;
+  --text-display-sm: 26px;  --text-display-sm--line-height: 32px;
+  --text-heading-lg: 22px;  --text-heading-lg--line-height: 28px;
+  --text-heading-md: 18px;  --text-heading-md--line-height: 24px;
+  --text-heading-sm: 15px;  --text-heading-sm--line-height: 20px;
+  --text-body-lg: 17px;     --text-body-lg--line-height: 26px;
+  --text-body-md: 15px;     --text-body-md--line-height: 22px;
+  --text-body-sm: 13px;     --text-body-sm--line-height: 18px;
+  --text-caption: 12px;     --text-caption--line-height: 16px;
+  --text-overline: 11px;    --text-overline--line-height: 14px;
+}
+
+/* Focus ring utility used by every interactive component */
+@utility focus-ring {
+  &:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+}

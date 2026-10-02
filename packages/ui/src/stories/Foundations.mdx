@@ -1,0 +1,166 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Foundations" />
+
+export const semanticColors = [
+  { name: "--bg-canvas", role: "Canvas background", light: "#F8F6F8", dark: "#171317" },
+  { name: "--surface-card", role: "Card / raised surface", light: "#FFFFFF", dark: "#201B20" },
+  { name: "--surface-sunken", role: "Nested panels", light: "#F1EEF1", dark: "#120F12" },
+  { name: "--text-strong", role: "Headings", light: "#221C22", dark: "#F5F1F5", ratio: "16.3:1" },
+  { name: "--text-body", role: "Body text", light: "#372F37", dark: "#DCD5DC", ratio: "12.1:1" },
+  { name: "--text-muted", role: "Secondary text", light: "#675D67", dark: "#A79DA7", ratio: "5.8:1 / 7.0:1" },
+  { name: "--accent", role: "Primary brand / actions", light: "#6E3A5E", dark: "#C493B3", ratio: "8.7:1 w/ white / 6.6:1 w/ #221C22" },
+  { name: "--text-on-accent", role: "Text on accent fill", light: "#FFFFFF", dark: "#221C22" },
+  { name: "--border-subtle", role: "Hairlines", light: "#E5E0E5", dark: "#2E282E" },
+  { name: "--border-input", role: "Form control borders", light: "#847A84", dark: "#7A707A", ratio: "≥3:1" },
+];
+
+export const primitiveRamps = [
+  { name: "Mist", prefix: "mist", steps: [0, 25, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+  { name: "Plum", prefix: "plum", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] },
+  { name: "Pine", prefix: "pine", steps: [50, 100, 200, 300, 400, 500, 600, 700, 800] },
+];
+
+export const statusTones = [
+  { name: "Success", prefix: "success" },
+  { name: "Warning", prefix: "warning" },
+  { name: "Danger", prefix: "danger" },
+  { name: "Info", prefix: "info" },
+];
+
+export const radii = [
+  { name: "--radius-xs", px: 3, use: "Checkbox" },
+  { name: "--radius-sm", px: 5, use: "Tag, tooltip" },
+  { name: "--radius-md", px: 8, use: "Button, input" },
+  { name: "--radius-lg", px: 12, use: "Card" },
+  { name: "--radius-xl", px: 16, use: "Dialog" },
+  { name: "--radius-pill", px: null, use: "Badge, switch track" },
+];
+
+export const shadows = ["--shadow-xs", "--shadow-sm", "--shadow-md", "--shadow-lg"];
+
+export const spacingScale = [0, 2, 4, 6, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80];
+
+<div style={{ fontFamily: "var(--font-sans)", color: "var(--text-body)", maxWidth: 920 }}>
+
+# Zyne foundations
+
+The design tokens behind every component: colors (light & dark), type, spacing, radii, shadows and motion. Components consume the **semantic aliases** documented here — never the raw primitives — so switching `data-theme` on `<html>` re-themes everything automatically.
+
+## Colors
+
+### Semantic aliases
+
+Each row shows the light-theme and dark-theme value for the same alias. Contrast ratios are measured against `--bg-canvas` (or the paired surface, for `--text-on-accent`) and meet WCAG AA (4.5:1 for body text, 3:1 for UI borders) unless noted.
+
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 16 }}>
+  {["light", "dark"].map((mode) => (
+    <div key={mode} data-theme={mode} style={{ background: "var(--bg-canvas)", border: "1px solid var(--border-subtle)", borderRadius: "var(--radius-lg)", padding: 16 }}>
+      <div style={{ font: "600 11px/14px var(--font-sans)", letterSpacing: ".08em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 12 }}>
+        {mode} theme
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {semanticColors.map((c) => (
+          <div key={c.name} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ width: 32, height: 32, flex: "none", borderRadius: "var(--radius-sm)", border: "1px solid var(--border-subtle)", background: `var(${c.name})` }} />
+            <div style={{ minWidth: 0 }}>
+              <div style={{ font: "600 12px/16px var(--font-mono)", color: "var(--text-strong)" }}>{c.name}</div>
+              <div style={{ font: "400 12px/16px var(--font-sans)", color: "var(--text-muted)" }}>
+                {c.role}
+                {c.ratio ? ` — ${c.ratio}` : ""}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+### Primitive ramps
+
+The raw scales semantic aliases are built from. Components never reference these directly.
+
+<div style={{ display: "flex", flexDirection: "column", gap: 20, marginTop: 16 }}>
+  {primitiveRamps.map((ramp) => (
+    <div key={ramp.prefix}>
+      <div style={{ font: "600 13px/18px var(--font-sans)", color: "var(--text-strong)", marginBottom: 6 }}>{ramp.name}</div>
+      <div style={{ display: "flex", gap: 4 }}>
+        {ramp.steps.map((step) => (
+          <div key={step} title={`--${ramp.prefix}-${step}`} style={{ flex: 1, height: 40, borderRadius: "var(--radius-xs)", border: "1px solid var(--border-subtle)", background: `var(--${ramp.prefix}-${step})` }} />
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+### Status tones
+
+Each status tone ships four aliases: soft background, foreground text, border, and a solid fill. Text always carries the meaning alongside color.
+
+<div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
+  {statusTones.map((tone) => (
+    <div key={tone.prefix} style={{ display: "inline-flex", alignItems: "center", gap: 6, height: 28, padding: "0 10px", borderRadius: "var(--radius-pill)", background: `var(--${tone.prefix}-bg)`, color: `var(--${tone.prefix}-fg)`, border: `1px solid var(--${tone.prefix}-border)`, font: "600 13px/1 var(--font-sans)" }}>
+      <span style={{ width: 6, height: 6, borderRadius: "50%", background: `var(--${tone.prefix}-solid)` }} />
+      {tone.name}
+    </div>
+  ))}
+</div>
+
+## Typography
+
+Three families: **Source Serif 4** (display), **Hanken Grotesk** (UI), **JetBrains Mono** (times, IDs, codes).
+
+<div style={{ display: "flex", flexDirection: "column", gap: 16, marginTop: 16 }}>
+  <div><div style={{ font: "600 56px/60px var(--font-display)", letterSpacing: "-.02em", color: "var(--text-strong)" }}>Display XL</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Source Serif 4 · 600 · 56/60</div></div>
+  <div><div style={{ font: "600 34px/40px var(--font-display)", letterSpacing: "-.02em", color: "var(--text-strong)" }}>Display MD</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Source Serif 4 · 600 · 34/40</div></div>
+  <div><div style={{ font: "600 22px/28px var(--font-sans)", color: "var(--text-strong)" }}>Heading LG</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Hanken Grotesk · 600 · 22/28</div></div>
+  <div><div style={{ font: "400 17px/26px var(--font-sans)", color: "var(--text-body)" }}>Body LG — the quick brown fox jumps over the lazy dog.</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Hanken Grotesk · 400 · 17/26</div></div>
+  <div><div style={{ font: "400 15px/22px var(--font-sans)", color: "var(--text-body)" }}>Body MD — the quick brown fox jumps over the lazy dog.</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Hanken Grotesk · 400 · 15/22</div></div>
+  <div><div style={{ font: "500 11px/14px var(--font-sans)", letterSpacing: ".08em", textTransform: "uppercase", color: "var(--text-muted)" }}>Overline label</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>Hanken Grotesk · 500 · 11/14 · +.08em</div></div>
+  <div><div style={{ font: "400 13px/20px var(--font-mono)", color: "var(--text-body)" }}>09:30 · BOOK-4471 · zyne.app/lena</div><div style={{ font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>JetBrains Mono · 400 · 13/20</div></div>
+</div>
+
+## Spacing
+
+<div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 16 }}>
+  {spacingScale.map((px) => (
+    <div key={px} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ width: 48, font: "400 12px/16px var(--font-mono)", color: "var(--text-muted)" }}>{px}px</div>
+      <div style={{ height: 10, width: px, background: "var(--accent-soft)", border: "1px solid var(--accent-soft-border)", borderRadius: 2 }} />
+    </div>
+  ))}
+</div>
+
+Control heights: **30 / 36 / 44px** (sm / md / lg).
+
+## Radii
+
+<div style={{ display: "flex", gap: 16, marginTop: 16, flexWrap: "wrap" }}>
+  {radii.map((r) => (
+    <div key={r.name} style={{ textAlign: "center" }}>
+      <div style={{ width: 64, height: 64, background: "var(--surface-sunken)", border: "1px solid var(--border-default)", borderRadius: r.px != null ? `${r.px}px` : "var(--radius-pill)" }} />
+      <div style={{ font: "600 12px/16px var(--font-mono)", color: "var(--text-strong)", marginTop: 6 }}>{r.name}</div>
+      <div style={{ font: "400 12px/16px var(--font-sans)", color: "var(--text-muted)" }}>{r.px != null ? `${r.px}px` : "pill"} · {r.use}</div>
+    </div>
+  ))}
+</div>
+
+## Shadows
+
+Light-theme shadows are tinted `rgba(55,47,55,…)`; dark-theme shadows are black plus a 1px white hairline at 4–6% opacity. Toggle the theme in the toolbar above to compare.
+
+<div style={{ display: "flex", gap: 20, marginTop: 16, flexWrap: "wrap" }}>
+  {shadows.map((s) => (
+    <div key={s} style={{ textAlign: "center" }}>
+      <div style={{ width: 96, height: 64, background: "var(--surface-card)", borderRadius: "var(--radius-lg)", boxShadow: `var(${s})` }} />
+      <div style={{ font: "600 12px/16px var(--font-mono)", color: "var(--text-strong)", marginTop: 8 }}>{s}</div>
+    </div>
+  ))}
+</div>
+
+## Motion
+
+Durations: **120ms** (fast), **180ms** (base), **260ms** (slow). Easing: `cubic-bezier(.2,0,0,1)` for entrances/state changes (`--ease-standard`), `cubic-bezier(.4,0,1,1)` for exits (`--ease-exit`). Fades and rises move 4px or less; nothing scales on press. Every transition respects `prefers-reduced-motion: reduce` by dropping to 0ms.
+
+</div>

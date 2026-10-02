@@ -1,0 +1,29 @@
+node_modules/
+dist/
+storybook-static/
+.turbo/
+*.log
+.DS_Store
+coverage/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Raw design-reference bundles (handed off from Claude design) — kept on disk
+# for provenance, not part of the shipped codebase.
+/handoff/
+/portfolio-handoff/
+/components/
+/tokens/
+/guidelines/
+/ui_kits/
+/explorations/
+/readme.md
+/SKILL.md
+/_ds_bundle.js
+/_ds_manifest.json
+/_adherence.oxlintrc.json
+/thumbnail.html
+/.thumbnail
+/styles.css

@@ -1,0 +1,26 @@
+:root{
+--font-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+--font-sans:"Hanken Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+--font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--weight-display:600;
+
+/* Display (serif) */
+--text-display-xl:56px;--lh-display-xl:60px;
+--text-display-lg:44px;--lh-display-lg:50px;
+--text-display-md:34px;--lh-display-md:40px;
+--text-display-sm:26px;--lh-display-sm:32px;
+/* UI headings (sans) */
+--text-heading-lg:22px;--lh-heading-lg:28px;
+--text-heading-md:18px;--lh-heading-md:24px;
+--text-heading-sm:15px;--lh-heading-sm:20px;
+/* Body */
+--text-body-lg:17px;--lh-body-lg:26px;
+--text-body-md:15px;--lh-body-md:22px;
+--text-body-sm:13px;--lh-body-sm:18px;
+--text-caption:12px;--lh-caption:16px;
+--text-overline:11px;--lh-overline:14px;--tracking-overline:.08em;
+--text-mono:13px;--lh-mono:20px;
+
+--tracking-tight:-.01em;--tracking-display:-.015em;--tracking-normal:0;
+}
