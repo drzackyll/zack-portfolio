@@ -36,7 +36,7 @@ export const projects: Project[] = [
     role: "Frontend lead",
     short: "A UNICEF Digital Public Good for field-office dashboards.",
     disciplines: "Frontend · Product",
-    image: null,
+    image: "/images/home-magasin.png",
     imagePosition: "center",
     href: "/work",
   },

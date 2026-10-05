@@ -8,6 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Zack Adams — Product-minded engineer",
   description: "Product lead and senior engineer building data and AI tools for people making fast, high-stakes decisions.",
+  icons: { icon: "/images/monogram.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
