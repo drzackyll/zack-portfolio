@@ -45,14 +45,7 @@ export function Header() {
     <header className="border-b border-border-subtle bg-canvas">
       <div className="flex items-center justify-between px-6 py-4 md:px-14 md:py-5">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image
-            src="/images/headshot.jpeg"
-            alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9 rounded-full object-cover"
-            style={{ objectPosition: "50% 30%" }}
-          />
+          <Image src="/images/monogram.svg" alt="" width={36} height={36} className="h-9 w-9" />
           <span className="font-sans text-base font-semibold text-strong md:inline hidden">Zack Adams</span>
           <span className="font-display text-xl font-semibold text-strong md:hidden">Zack Adams</span>
         </Link>

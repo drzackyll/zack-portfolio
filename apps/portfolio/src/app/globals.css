@@ -1,6 +1,8 @@
 /* Fonts are self-hosted via next/font in layout.tsx (not @zyne/ui/src/tokens/fonts.css's
    Google Fonts CDN @import), which sets --font-display/--font-sans/--font-mono directly. */
 @import "tailwindcss";
+/* Tailwind skips node_modules, so scan the workspace UI package for its utility classes. */
+@source "../../../../packages/ui/src/components";
 
 @import "@zyne/ui/src/tokens/colors.css";
 @import "@zyne/ui/src/tokens/typography.css";
