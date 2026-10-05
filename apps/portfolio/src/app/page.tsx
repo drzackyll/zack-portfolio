@@ -47,10 +47,10 @@ export default function HomePage() {
             adams.z.d@gmail.com
           </a>
           <div className="flex gap-[18px] text-muted">
-            <a href="https://github.com/drzackyll" className="hover:text-strong">
+            <a href="https://github.com/drzackyll" target="_blank" rel="noopener noreferrer" className="hover:text-strong">
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/zacharydadams/" className="hover:text-strong">
+            <a href="https://www.linkedin.com/in/zacharydadams/" target="_blank" rel="noopener noreferrer" className="hover:text-strong">
               LinkedIn
             </a>
             <a href="/resume.pdf" className="hover:text-strong">
