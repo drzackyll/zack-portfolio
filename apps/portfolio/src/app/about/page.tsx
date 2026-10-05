@@ -33,10 +33,10 @@ export default function AboutPage() {
               <a href="/resume.pdf">Download CV</a>
             </Button>
             <Button variant="secondary" asChild>
-              <a href="https://github.com/drzackyll">GitHub</a>
+              <a href="https://github.com/drzackyll" target="_blank" rel="noopener noreferrer">GitHub</a>
             </Button>
             <Button variant="secondary" asChild>
-              <a href="https://www.linkedin.com/in/zacharydadams/">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/zacharydadams/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </Button>
             <a
               href="mailto:adams.z.d@gmail.com"
