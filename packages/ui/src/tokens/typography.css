@@ -14,6 +14,8 @@
 --text-heading-lg:22px;--lh-heading-lg:28px;
 --text-heading-md:18px;--lh-heading-md:24px;
 --text-heading-sm:15px;--lh-heading-sm:20px;
+/* UI text (controls, list rows) */
+--text-ui:14px;--lh-ui:20px;
 /* Body */
 --text-body-lg:17px;--lh-body-lg:26px;
 --text-body-md:15px;--lh-body-md:22px;
