@@ -44,7 +44,7 @@ export function Header() {
   return (
     <header className="border-b border-border-subtle bg-canvas">
       <div className="flex items-center justify-between px-6 py-4 md:px-14 md:py-5">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5 no-underline">
           <Image src="/images/monogram.svg" alt="" width={36} height={36} className="h-9 w-9" />
           <span className="font-sans text-base font-semibold text-strong md:inline hidden">Zack Adams</span>
           <span className="font-display text-xl font-semibold text-strong md:hidden">Zack Adams</span>
@@ -72,20 +72,23 @@ export function Header() {
         className="overflow-hidden bg-surface-inverse transition-[grid-template-rows] duration-[400ms] ease-[cubic-bezier(.2,.8,.2,1)] md:hidden"
         style={{ display: "grid", gridTemplateRows: menuOpen ? "1fr" : "0fr" }}
       >
-        <nav aria-label="Primary" className="min-h-0 px-6 py-2">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={cn(
-                "block py-2.5 font-display text-[32px] font-semibold text-inverse",
-                item.label === "Contact" && "text-[var(--plum-300)]",
-              )}
-            >
-              {item.label === "Contact" ? "Get in touch" : item.label}
-            </Link>
-          ))}
+        {/* Vertical padding lives inside the collapsing row so nothing shows while closed. */}
+        <nav aria-label="Primary" className="min-h-0 px-6">
+          <div className="py-2">
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "block py-2 font-display text-2xl font-semibold text-inverse no-underline",
+                  item.label === "Contact" && "text-[var(--plum-300)]",
+                )}
+              >
+                {item.label === "Contact" ? "Get in touch" : item.label}
+              </Link>
+            ))}
+          </div>
         </nav>
       </div>
     </header>
