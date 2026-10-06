@@ -52,7 +52,7 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
           />
         </button>
         {label && (
-          <span id={labelId} className="font-sans text-sm font-medium leading-5 text-strong">
+          <span id={labelId} className="font-sans text-ui font-medium text-strong">
             {label}
           </span>
         )}

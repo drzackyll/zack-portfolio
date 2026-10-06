@@ -29,10 +29,10 @@ const TONE_ICON: Record<NonNullable<ToastProps["tone"]>, string> = {
 };
 
 const TONE_ICON_CLASS: Record<NonNullable<ToastProps["tone"]>, string> = {
-  neutral: "text-[var(--mist-300)]",
-  success: "text-[var(--green-200)]",
-  warning: "text-[var(--amber-200)]",
-  danger: "text-[var(--red-200)]",
+  neutral: "text-toast-icon-neutral",
+  success: "text-toast-icon-success",
+  warning: "text-toast-icon-warning",
+  danger: "text-toast-icon-danger",
 };
 
 /**
@@ -77,22 +77,22 @@ export function Toast({
       onBlur={startTimer}
       style={style}
       className={cn(
-        "flex w-[360px] max-w-full items-start gap-3 rounded-lg bg-surface-inverse py-3 pl-3.5 pr-3 text-inverse shadow-lg",
+        "flex w-[360px] max-w-full items-start gap-3 rounded-lg bg-toast-bg py-3 pl-3.5 pr-3 text-toast-fg shadow-lg",
         className,
       )}
     >
       <Icon name={TONE_ICON[tone]} size={18} className={cn("mt-px flex-none", TONE_ICON_CLASS[tone])} />
       <div className="min-w-0 flex-1">
-        <div className="font-sans text-sm font-semibold leading-5">{title}</div>
+        <div className="font-sans text-ui font-semibold">{title}</div>
         {description && (
-          <div className="mt-0.5 font-sans text-[13px] leading-[18px] text-[var(--mist-300)]">{description}</div>
+          <div className="mt-0.5 font-sans text-body-sm text-toast-fg-muted">{description}</div>
         )}
       </div>
       {action && (
         <button
           type="button"
           onClick={action.onClick}
-          className="flex-none px-1 font-sans text-[13px] font-semibold leading-5 text-[var(--plum-200)]"
+          className="flex-none px-1 font-sans text-body-sm/5 font-semibold text-toast-action"
         >
           {action.label}
         </button>
@@ -102,7 +102,7 @@ export function Toast({
           type="button"
           aria-label="Dismiss"
           onClick={onClose}
-          className="inline-flex flex-none p-0.5 text-[var(--mist-400)]"
+          className="inline-flex flex-none p-0.5 text-toast-dismiss"
         >
           <Icon name="x" size={16} />
         </button>

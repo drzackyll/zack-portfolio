@@ -75,7 +75,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={Boolean(error) || undefined}
             aria-describedby={hasMessage ? descriptionId : undefined}
             className={cn(
-              "h-full min-w-0 flex-1 border-0 bg-transparent font-sans text-sm leading-5 text-strong outline-none placeholder:text-subtle disabled:text-subtle",
+              "h-full min-w-0 flex-1 border-0 bg-transparent font-sans text-ui text-strong outline-none placeholder:text-subtle disabled:text-subtle",
               className,
             )}
             {...rest}

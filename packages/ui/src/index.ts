@@ -16,3 +16,8 @@ export * from "./components/IconButton/IconButton";
 export * from "./components/Dialog/Dialog";
 export * from "./components/Toast/Toast";
 export * from "./components/Tooltip/Tooltip";
+export * from "./components/Spinner/Spinner";
+export * from "./components/Avatar/Avatar";
+export * from "./components/Textarea/Textarea";
+export * from "./components/Menu/Menu";
+export * from "./components/Calendar/Calendar";

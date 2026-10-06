@@ -15,7 +15,7 @@ interface TagSharedProps {
 }
 
 const baseClass =
-  "inline-flex h-7 items-center gap-1.5 whitespace-nowrap rounded-sm border font-sans text-[13px] font-medium";
+  "inline-flex h-7 items-center gap-1.5 whitespace-nowrap rounded-sm border font-sans text-body-sm font-medium";
 
 function tagToneClass(selected: boolean | undefined) {
   return selected

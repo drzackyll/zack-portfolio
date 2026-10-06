@@ -27,7 +27,7 @@ export function Tooltip({ content, placement = "top", children, className }: Too
             side={placement}
             sideOffset={6}
             className={cn(
-              "z-[var(--z-tooltip)] rounded-sm bg-surface-inverse px-2 py-1.5 font-sans text-xs font-medium leading-4 text-inverse shadow-md",
+              "z-[var(--z-tooltip)] rounded-sm bg-surface-inverse px-2 py-1.5 font-sans text-caption font-medium text-inverse shadow-md",
               className,
             )}
           >

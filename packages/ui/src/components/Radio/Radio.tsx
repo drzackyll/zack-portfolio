@@ -22,7 +22,7 @@ export function RadioGroup({ name, value, onValueChange, legend, className, chil
   const context = React.useMemo(() => ({ name, value, onValueChange }), [name, value, onValueChange]);
   return (
     <fieldset className={cn("flex flex-col gap-2.5 border-0 p-0", className)}>
-      <legend className="mb-1 font-sans text-[13px] font-semibold leading-[18px] text-strong">{legend}</legend>
+      <legend className="mb-1 font-sans text-body-sm font-semibold text-strong">{legend}</legend>
       <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>
     </fieldset>
   );
@@ -86,7 +86,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               <label
                 htmlFor={inputId}
                 className={cn(
-                  "font-sans text-sm font-medium leading-5",
+                  "font-sans text-ui font-medium",
                   disabled ? "cursor-not-allowed text-subtle" : "cursor-pointer text-strong",
                 )}
               >
@@ -94,7 +94,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
               </label>
             )}
             {description && (
-              <span id={descriptionId} className="font-sans text-[13px] leading-[18px] text-muted">
+              <span id={descriptionId} className="font-sans text-body-sm text-muted">
                 {description}
               </span>
             )}

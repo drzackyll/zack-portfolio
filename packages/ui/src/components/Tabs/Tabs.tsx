@@ -84,11 +84,11 @@ export function Tabs({ items, value, onValueChange, variant = "underline", class
               "focus-ring inline-flex items-center gap-1.5 whitespace-nowrap font-sans font-semibold",
               pill
                 ? cn(
-                    "h-7 rounded-sm px-3 text-[13px]",
+                    "h-7 rounded-sm px-3 text-body-sm",
                     selected ? "bg-surface-card text-strong shadow-sm" : "bg-transparent text-muted",
                   )
                 : cn(
-                    "-mb-px h-10 border-b-2 text-sm",
+                    "-mb-px h-10 border-b-2 text-ui",
                     selected ? "border-accent text-strong" : "border-transparent text-muted",
                   ),
             )}
@@ -97,7 +97,7 @@ export function Tabs({ items, value, onValueChange, variant = "underline", class
             {item.count != null && (
               <span
                 className={cn(
-                  "rounded-[var(--radius-pill)] px-1.5 py-0.5 text-[11px] font-semibold leading-none",
+                  "rounded-[var(--radius-pill)] px-1.5 py-0.5 text-overline font-semibold leading-none",
                   selected ? "bg-accent-soft text-accent-text" : "bg-neutral-bg text-muted",
                 )}
               >
