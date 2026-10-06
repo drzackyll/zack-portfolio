@@ -2,10 +2,11 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Icon } from "../Icon/Icon";
+import { Spinner } from "../Spinner/Spinner";
 import { cn } from "../../lib/cn";
 
 export const buttonVariants = cva(
-  "focus-ring relative inline-flex select-none items-center justify-center whitespace-nowrap rounded-md border font-sans text-[13px] font-semibold tracking-[-.005em] transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] disabled:cursor-not-allowed disabled:border-border-subtle disabled:text-subtle",
+  "focus-ring relative inline-flex select-none items-center justify-center whitespace-nowrap rounded-md border font-sans font-semibold tracking-[-.005em] transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] disabled:cursor-not-allowed disabled:border-border-subtle disabled:text-subtle",
   {
     variants: {
       variant: {
@@ -19,9 +20,9 @@ export const buttonVariants = cva(
           "border-transparent bg-danger-solid text-white hover:brightness-95 active:brightness-90 disabled:bg-surface-sunken",
       },
       size: {
-        sm: "h-[30px] gap-1.5 px-[10px] text-[13px]",
-        md: "h-9 gap-2 px-[14px] text-sm",
-        lg: "h-11 gap-2 px-[18px] text-[15px]",
+        sm: "h-[30px] gap-1.5 px-[10px] text-body-sm",
+        md: "h-9 gap-2 px-[14px] text-ui",
+        lg: "h-11 gap-2 px-[18px] text-body-md",
       },
       fullWidth: {
         true: "w-full",
@@ -95,12 +96,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {loading && (
-          <Icon
-            name="loader-circle"
-            size={iconSize}
-            className="absolute animate-spin"
-            aria-hidden
-          />
+          <Spinner size={iconSize} decorative className="absolute" />
         )}
         <span className={cn("inline-flex items-center", CONTENT_GAP[size ?? "md"], loading && "invisible")}>
           {iconLeft && <Icon name={iconLeft} size={iconSize} />}

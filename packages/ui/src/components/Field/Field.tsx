@@ -29,7 +29,7 @@ export function Field({
   return (
     <div className={cn("flex min-w-0 flex-col gap-1.5", className)}>
       {label && (
-        <label htmlFor={htmlFor} className="font-sans text-[13px] font-semibold leading-[18px] text-strong">
+        <label htmlFor={htmlFor} className="font-sans text-body-sm font-semibold text-strong">
           {label}
           {required && <span className="text-danger-fg"> *</span>}
         </label>
@@ -38,7 +38,7 @@ export function Field({
       {message && (
         <div
           id={descriptionId}
-          className={cn("font-sans text-xs leading-4", error ? "text-danger-fg" : "text-muted")}
+          className={cn("font-sans text-caption", error ? "text-danger-fg" : "text-muted")}
         >
           {message}
         </div>

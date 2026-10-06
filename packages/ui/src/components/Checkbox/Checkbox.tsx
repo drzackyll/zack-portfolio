@@ -68,7 +68,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               <label
                 htmlFor={inputId}
                 className={cn(
-                  "font-sans text-sm font-medium leading-5",
+                  "font-sans text-ui font-medium",
                   disabled ? "cursor-not-allowed text-subtle" : "cursor-pointer text-strong",
                 )}
               >
@@ -76,7 +76,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               </label>
             )}
             {description && (
-              <span id={descriptionId} className="font-sans text-[13px] leading-[18px] text-muted">
+              <span id={descriptionId} className="font-sans text-body-sm text-muted">
                 {description}
               </span>
             )}

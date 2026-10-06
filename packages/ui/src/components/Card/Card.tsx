@@ -43,7 +43,7 @@ function CardBody({ title, description, actions, footer, padding = 20, children 
         >
           <div className="min-w-0 flex-1">
             {title && <div className="font-sans text-heading-sm font-semibold text-strong">{title}</div>}
-            {description && <div className="mt-0.5 text-[13px] leading-[18px] text-muted">{description}</div>}
+            {description && <div className="mt-0.5 text-body-sm text-muted">{description}</div>}
           </div>
           {actions && <div className="flex flex-none gap-1">{actions}</div>}
         </div>

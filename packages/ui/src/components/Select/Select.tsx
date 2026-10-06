@@ -62,7 +62,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             aria-describedby={hasMessage ? descriptionId : undefined}
             defaultValue={rest.defaultValue ?? (placeholder ? "" : undefined)}
             className={cn(
-              "h-full w-full appearance-none bg-transparent px-3 pr-9 font-sans text-sm leading-5 text-strong outline-none disabled:cursor-not-allowed disabled:text-subtle",
+              "h-full w-full appearance-none bg-transparent px-3 pr-9 font-sans text-ui text-strong outline-none disabled:cursor-not-allowed disabled:text-subtle",
               className,
             )}
             {...rest}

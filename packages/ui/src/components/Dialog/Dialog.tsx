@@ -75,7 +75,7 @@ export function Dialog({
                 {title}
               </DialogPrimitive.Title>
               {description && (
-                <DialogPrimitive.Description className="mt-1 font-sans text-sm leading-5 text-muted">
+                <DialogPrimitive.Description className="mt-1 font-sans text-ui text-muted">
                   {description}
                 </DialogPrimitive.Description>
               )}
