@@ -24,17 +24,17 @@ export function ProjectRows({ projects }: { projects: Project[] }) {
               open && "bg-surface-card",
             )}
           >
-            <div className="flex items-baseline justify-between gap-4">
+            <div className="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between md:gap-4">
               <span className="font-display text-[26px] font-semibold leading-tight text-strong md:text-[38px] md:leading-[42px]">
                 {project.name}
               </span>
-              <span className="whitespace-nowrap font-mono text-xs text-muted">
+              <span className="font-mono text-xs text-muted md:whitespace-nowrap">
                 {project.org} · {project.role}
               </span>
             </div>
-            <div className="mt-1.5 flex items-baseline justify-between gap-4">
+            <div className="mt-2 flex flex-col gap-1 md:mt-1.5 md:flex-row md:items-baseline md:justify-between md:gap-4">
               <span className="font-sans text-base text-muted">{project.short}</span>
-              <span className="whitespace-nowrap font-sans text-[13px] text-muted">{project.disciplines}</span>
+              <span className="font-sans text-[13px] text-muted md:whitespace-nowrap">{project.disciplines}</span>
             </div>
             {project.image && (
               <div

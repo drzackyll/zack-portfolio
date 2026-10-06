@@ -50,6 +50,49 @@ function CandidateListRow({ row, onPick }: { row: CandidateRowView; onPick: (key
   );
 }
 
+function MobileRow({
+  title,
+  aside,
+  line,
+  detail,
+  assignment,
+  selected,
+  onOpen,
+}: {
+  title: React.ReactNode;
+  aside: string;
+  line: string;
+  detail: string;
+  assignment?: Assignment;
+  selected: boolean;
+  onOpen: (el: HTMLButtonElement) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={(event) => onOpen(event.currentTarget)}
+      className={cn(
+        "flex w-full flex-col gap-1 border-b border-border-subtle px-4 py-3 text-left font-sans text-[13px] transition-colors duration-150 hover:bg-surface-hover",
+        selected && "bg-surface-selected",
+      )}
+    >
+      <span className="flex w-full items-baseline justify-between gap-3">
+        {title}
+        <span className="font-mono text-xs text-muted">{aside}</span>
+      </span>
+      <span className="truncate text-strong">{line}</span>
+      <span className="flex min-w-0 items-center gap-2 text-muted">
+        <span className="truncate">{detail}</span>
+        {assignment && (
+          <Badge tone={assignment.override ? "warning" : "success"} dot>
+            {assignment.override ? "Overridden" : "Assigned"}
+          </Badge>
+        )}
+      </span>
+    </button>
+  );
+}
+
 export function DispatchDemo() {
   const [mode, setMode] = React.useState<Mode>("loads");
   const [openId, setOpenId] = React.useState<string | null>(null);
@@ -104,7 +147,8 @@ export function DispatchDemo() {
   // Focus moves into the panel on open, and Esc closes it.
   React.useEffect(() => {
     if (!openId) return;
-    closeButtonRef.current?.focus();
+    // preventScroll: the panel is still sliding in, and scrolling to it would shift the demo sideways.
+    closeButtonRef.current?.focus({ preventScroll: true });
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") closePanel();
     };
@@ -245,8 +289,8 @@ export function DispatchDemo() {
 
   return (
     <div className="relative flex h-full flex-col overflow-hidden bg-canvas">
-      <div className="flex items-center justify-between gap-4 border-b border-border-subtle bg-surface-card px-5 py-3">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between gap-4 border-b border-border-subtle bg-surface-card px-4 py-3 md:px-5">
+        <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
           <span className="font-sans text-base font-semibold text-strong">Dispatching</span>
           <Tabs
             items={[
@@ -258,7 +302,7 @@ export function DispatchDemo() {
             variant="pill"
           />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" size="sm" iconLeft="list-checks">
             Driver rules
           </Button>
@@ -268,103 +312,135 @@ export function DispatchDemo() {
         </div>
       </div>
 
-      <div className="flex items-center gap-4 px-5 py-3">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-3 md:flex-nowrap md:px-5">
         <Button variant="secondary" size="sm" iconLeft="filter">
           Add filters
         </Button>
-        <span className="flex items-center gap-2 font-sans text-[13px] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-success-solid" />
-          Last synced Nov 1, 12:16 · recommendations refresh every few minutes
+        <span className="order-last flex basis-full items-center gap-2 font-sans text-[13px] text-muted md:order-none md:basis-auto">
+          <span className="h-1.5 w-1.5 flex-none rounded-full bg-success-solid" />
+          <span className="md:hidden">Synced Nov 1, 12:16</span>
+          <span className="hidden md:inline">Last synced Nov 1, 12:16 · recommendations refresh every few minutes</span>
         </span>
         <Badge tone="neutral" className="ml-auto">
           {openCount}
         </Badge>
       </div>
 
-      <div className="mx-5 flex-1 overflow-auto rounded-xl border border-border-subtle bg-surface-card">
-        {isLoads ? (
-          <>
-            <div className={cn("grid gap-3 border-b border-border-subtle bg-surface-sunken px-4 py-2.5 font-sans text-xs font-semibold text-[var(--mist-700)]", LOADS_GRID)}>
-              <span>Load</span>
-              <span>Shipper</span>
-              <span>Pick-up window</span>
-              <span>Pick-up</span>
-              <span>Drop-off window</span>
-              <span>Drop-off</span>
-              <span>Req.</span>
-              <span>Top driver</span>
-              <span className="text-right">Rating</span>
-            </div>
-            {loadTableRows.map((row) => (
-              <button
-                key={row.id}
-                type="button"
-                onClick={(event) => openRow(row.id, event.currentTarget)}
-                className={cn(
-                  "grid w-full gap-3 border-b border-border-subtle px-4 py-3 text-left font-sans text-[13px] transition-colors duration-150 hover:bg-surface-hover",
-                  LOADS_GRID,
-                  openId === row.id && "bg-surface-selected",
-                )}
-              >
-                <span className="font-mono text-xs text-[var(--plum-700)] underline underline-offset-2">{row.id}</span>
-                <span className="font-mono text-xs text-muted">{row.shipper}</span>
-                <span className="font-mono text-xs">{row.puWin}</span>
-                <span className="truncate">{row.from}</span>
-                <span className="font-mono text-xs">{row.doWin}</span>
-                <span className="truncate">{row.to}</span>
-                <span className="font-mono text-xs">{row.req}</span>
-                <span className="flex min-w-0 items-center gap-2">
-                  <span className="truncate font-semibold">{row.driverName}</span>
-                  {row.assignment && (
-                    <Badge tone={row.assignment.override ? "warning" : "success"} dot>
-                      {row.assignment.override ? "Overridden" : "Assigned"}
-                    </Badge>
+      <div className="mx-4 mb-4 flex-1 overflow-auto rounded-xl border border-border-subtle bg-surface-card md:mx-5 md:mb-0">
+        {/* Phones get a stacked list; the full table needs ~900px. */}
+        <div className="md:hidden">
+          {isLoads
+            ? loadTableRows.map((row) => (
+                <MobileRow
+                  key={row.id}
+                  selected={openId === row.id}
+                  onOpen={(el) => openRow(row.id, el)}
+                  title={<span className="font-mono text-xs text-[var(--plum-700)] underline underline-offset-2">{row.id}</span>}
+                  aside={`${row.shipper} · ${row.score}`}
+                  line={`${row.from} → ${row.to}`}
+                  detail={`${row.puWin} · ${row.driverName}`}
+                  assignment={row.assignment}
+                />
+              ))
+            : driverTableRows.map((row) => (
+                <MobileRow
+                  key={row.id}
+                  selected={openId === row.id}
+                  onOpen={(el) => openRow(row.id, el)}
+                  title={<span className="font-semibold text-[var(--plum-700)] underline underline-offset-2">{row.name}</span>}
+                  aside={row.score}
+                  line={`${row.now} · ${row.hos}`}
+                  detail={`${row.topLoad} · ${row.lane}`}
+                  assignment={row.assignment}
+                />
+              ))}
+        </div>
+
+        <div className="hidden md:block">
+          {isLoads ? (
+            <>
+              <div className={cn("grid gap-3 border-b border-border-subtle bg-surface-sunken px-4 py-2.5 font-sans text-xs font-semibold text-[var(--mist-700)]", LOADS_GRID)}>
+                <span>Load</span>
+                <span>Shipper</span>
+                <span>Pick-up window</span>
+                <span>Pick-up</span>
+                <span>Drop-off window</span>
+                <span>Drop-off</span>
+                <span>Req.</span>
+                <span>Top driver</span>
+                <span className="text-right">Rating</span>
+              </div>
+              {loadTableRows.map((row) => (
+                <button
+                  key={row.id}
+                  type="button"
+                  onClick={(event) => openRow(row.id, event.currentTarget)}
+                  className={cn(
+                    "grid w-full gap-3 border-b border-border-subtle px-4 py-3 text-left font-sans text-[13px] transition-colors duration-150 hover:bg-surface-hover",
+                    LOADS_GRID,
+                    openId === row.id && "bg-surface-selected",
                   )}
-                </span>
-                <span className="text-right font-mono text-xs text-[var(--secondary)]">{row.score}</span>
-              </button>
-            ))}
-          </>
-        ) : (
-          <>
-            <div className={cn("grid gap-3 border-b border-border-subtle bg-surface-sunken px-4 py-2.5 font-sans text-xs font-semibold text-[var(--mist-700)]", DRIVERS_GRID)}>
-              <span>Driver</span>
-              <span>Home base</span>
-              <span>Current location</span>
-              <span>Drive time</span>
-              <span>Top load</span>
-              <span>Lane</span>
-              <span className="text-right">Match</span>
-            </div>
-            {driverTableRows.map((row) => (
-              <button
-                key={row.id}
-                type="button"
-                onClick={(event) => openRow(row.id, event.currentTarget)}
-                className={cn(
-                  "grid w-full gap-3 border-b border-border-subtle px-4 py-3 text-left font-sans text-[13px] transition-colors duration-150 hover:bg-surface-hover",
-                  DRIVERS_GRID,
-                  openId === row.id && "bg-surface-selected",
-                )}
-              >
-                <span className="font-semibold text-[var(--plum-700)] underline underline-offset-2">{row.name}</span>
-                <span>{row.home}</span>
-                <span>{row.now}</span>
-                <span className="font-mono text-xs">{row.hos}</span>
-                <span className="font-mono text-xs font-semibold">{row.topLoad}</span>
-                <span className="flex min-w-0 items-center gap-2">
-                  <span className="truncate">{row.lane}</span>
-                  {row.assignment && (
-                    <Badge tone={row.assignment.override ? "warning" : "success"} dot>
-                      {row.assignment.override ? "Overridden" : "Assigned"}
-                    </Badge>
+                >
+                  <span className="font-mono text-xs text-[var(--plum-700)] underline underline-offset-2">{row.id}</span>
+                  <span className="font-mono text-xs text-muted">{row.shipper}</span>
+                  <span className="font-mono text-xs">{row.puWin}</span>
+                  <span className="truncate">{row.from}</span>
+                  <span className="font-mono text-xs">{row.doWin}</span>
+                  <span className="truncate">{row.to}</span>
+                  <span className="font-mono text-xs">{row.req}</span>
+                  <span className="flex min-w-0 items-center gap-2">
+                    <span className="truncate font-semibold">{row.driverName}</span>
+                    {row.assignment && (
+                      <Badge tone={row.assignment.override ? "warning" : "success"} dot>
+                        {row.assignment.override ? "Overridden" : "Assigned"}
+                      </Badge>
+                    )}
+                  </span>
+                  <span className="text-right font-mono text-xs text-[var(--secondary)]">{row.score}</span>
+                </button>
+              ))}
+            </>
+          ) : (
+            <>
+              <div className={cn("grid gap-3 border-b border-border-subtle bg-surface-sunken px-4 py-2.5 font-sans text-xs font-semibold text-[var(--mist-700)]", DRIVERS_GRID)}>
+                <span>Driver</span>
+                <span>Home base</span>
+                <span>Current location</span>
+                <span>Drive time</span>
+                <span>Top load</span>
+                <span>Lane</span>
+                <span className="text-right">Match</span>
+              </div>
+              {driverTableRows.map((row) => (
+                <button
+                  key={row.id}
+                  type="button"
+                  onClick={(event) => openRow(row.id, event.currentTarget)}
+                  className={cn(
+                    "grid w-full gap-3 border-b border-border-subtle px-4 py-3 text-left font-sans text-[13px] transition-colors duration-150 hover:bg-surface-hover",
+                    DRIVERS_GRID,
+                    openId === row.id && "bg-surface-selected",
                   )}
-                </span>
-                <span className="text-right font-mono text-xs text-[var(--secondary)]">{row.score}</span>
-              </button>
-            ))}
-          </>
-        )}
+                >
+                  <span className="font-semibold text-[var(--plum-700)] underline underline-offset-2">{row.name}</span>
+                  <span>{row.home}</span>
+                  <span>{row.now}</span>
+                  <span className="font-mono text-xs">{row.hos}</span>
+                  <span className="font-mono text-xs font-semibold">{row.topLoad}</span>
+                  <span className="flex min-w-0 items-center gap-2">
+                    <span className="truncate">{row.lane}</span>
+                    {row.assignment && (
+                      <Badge tone={row.assignment.override ? "warning" : "success"} dot>
+                        {row.assignment.override ? "Overridden" : "Assigned"}
+                      </Badge>
+                    )}
+                  </span>
+                  <span className="text-right font-mono text-xs text-[var(--secondary)]">{row.score}</span>
+                </button>
+              ))}
+            </>
+          )}
+        </div>
       </div>
 
       <div
