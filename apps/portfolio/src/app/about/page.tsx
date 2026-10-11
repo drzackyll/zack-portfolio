@@ -30,7 +30,7 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-wrap items-center gap-3">
             <Button asChild>
-              <a href="/resume.pdf">Download CV</a>
+              <a href="/Zack-Adams-CV.pdf" target="_blank" rel="noopener noreferrer">Download CV</a>
             </Button>
             <Button variant="secondary" asChild>
               <a href="https://github.com/drzackyll" target="_blank" rel="noopener noreferrer">GitHub</a>

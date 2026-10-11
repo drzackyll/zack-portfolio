@@ -53,7 +53,7 @@ export default function HomePage() {
             <a href="https://www.linkedin.com/in/zacharydadams/" target="_blank" rel="noopener noreferrer" className="hover:text-strong">
               LinkedIn
             </a>
-            <a href="/resume.pdf" className="hover:text-strong">
+            <a href="/Zack-Adams-CV.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-strong">
               Résumé
             </a>
           </div>
