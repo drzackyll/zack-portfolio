@@ -10,7 +10,8 @@
     "build-storybook": "storybook build",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:css": "tailwindcss -i ./src/styles.css -o ./dist/zyne.css"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.2",
@@ -33,6 +34,7 @@
     "@storybook/react": "^8.3.6",
     "@storybook/react-vite": "^8.3.6",
     "@storybook/theming": "8.6.18",
+    "@tailwindcss/cli": "4.3.3",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
