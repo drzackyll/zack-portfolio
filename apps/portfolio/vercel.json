@@ -2,5 +2,9 @@
   "redirects": [
     { "source": "/zyne/storybook", "destination": "/zyne/storybook/index.html", "permanent": false },
     { "source": "/zyne/storybook/", "destination": "/zyne/storybook/index.html", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/zyne/storybook/index.html", "destination": "/zyne/storybook/index" },
+    { "source": "/zyne/storybook/iframe.html", "destination": "/zyne/storybook/iframe" }
   ]
 }
