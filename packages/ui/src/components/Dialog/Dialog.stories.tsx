@@ -10,8 +10,8 @@ export default meta;
 
 type Story = StoryObj;
 
-function Demo(props: { destructive?: boolean; withDescription?: boolean }) {
-  const [open, setOpen] = React.useState(false);
+function Demo(props: { destructive?: boolean; withDescription?: boolean; defaultOpen?: boolean }) {
+  const [open, setOpen] = React.useState(props.defaultOpen ?? false);
   return (
     <>
       <Button onClick={() => setOpen(true)}>Open dialog</Button>
@@ -38,6 +38,10 @@ function Demo(props: { destructive?: boolean; withDescription?: boolean }) {
 
 export const Default: Story = {
   render: () => <Demo />,
+};
+
+export const Open: Story = {
+  render: () => <Demo defaultOpen />,
 };
 
 export const Destructive: Story = {

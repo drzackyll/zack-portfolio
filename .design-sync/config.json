@@ -1,0 +1,41 @@
+{
+  "projectId": "fc5c8b1c-f7df-4fa0-9603-cbf11bc43436",
+  "shape": "storybook",
+  "storybookConfigDir": "packages/ui/.storybook",
+  "storybookStatic": ".design-sync/sb-reference",
+  "pkg": "@zyne/ui",
+  "globalName": "Zyne",
+  "entry": "packages/ui/src/index.ts",
+  "buildCmd": "pnpm -F @zyne/ui build:css",
+  "cssEntry": "dist/zyne.css",
+  "overrides": {
+    "Button": {
+      "cardMode": "column"
+    },
+    "Badge": {
+      "cardMode": "column"
+    },
+    "Tabs": {
+      "cardMode": "column"
+    },
+    "Menu": {
+      "cardMode": "single",
+      "primaryStory": "Open"
+    },
+    "Dialog": {
+      "cardMode": "single",
+      "primaryStory": "Open"
+    },
+    "Toast": {
+      "cardMode": "single",
+      "primaryStory": "Static"
+    }
+  },
+  "dtsPropsFor": {
+    "Icon": "\n  /** Lucide icon name in kebab-case, e.g. \"chevron-down\", \"refresh-cw\". */\n  name: string;\n  /** Accessible name. Omit for purely decorative icons (the default). */\n  label?: string;\n  /** Pixel size: 14, 16 (default) or 20. */\n  size?: number | string;\n  /** @default \"currentColor\" */\n  color?: string;\n  strokeWidth?: number | string;\n  absoluteStrokeWidth?: boolean;\n  className?: string;\n  style?: React.CSSProperties;\n"
+  },
+  "readmeHeader": ".design-sync/conventions.md",
+  "guidelinesGlob": [
+    "README.md"
+  ]
+}
