@@ -7,6 +7,8 @@ storybook-static/
 coverage/
 .next/
 out/
+# Built into the site by `pnpm build` (apps/portfolio build:storybook)
+apps/portfolio/public/zyne/storybook/
 next-env.d.ts
 *.tsbuildinfo
 

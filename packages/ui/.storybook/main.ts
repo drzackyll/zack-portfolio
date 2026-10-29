@@ -14,6 +14,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true,
   },
+  staticDirs: ["./public"],
   async viteFinal(viteConfig) {
     const { default: tailwindcss } = await import("@tailwindcss/vite");
     viteConfig.plugins = [...(viteConfig.plugins ?? []), tailwindcss()];

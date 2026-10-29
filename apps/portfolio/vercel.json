@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/zyne/storybook", "destination": "/zyne/storybook/index.html", "permanent": false },
+    { "source": "/zyne/storybook/", "destination": "/zyne/storybook/index.html", "permanent": false }
+  ]
+}

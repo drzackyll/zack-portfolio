@@ -6,7 +6,11 @@ import { Menu } from "./Menu";
 const meta: Meta<typeof Menu> = {
   title: "Menu/Menu",
   component: Menu,
-  parameters: { layout: "centered" },
+  parameters: {
+    layout: "centered",
+    // The open menu is portalled to <body>, outside the story's landmarks.
+    a11y: { config: { rules: [{ id: "region", enabled: false }] } },
+  },
   args: {
     label: "Booking actions",
     trigger: <IconButton icon="ellipsis" label="More actions" />,
